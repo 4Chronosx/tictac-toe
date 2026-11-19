@@ -13,7 +13,7 @@ export function Board({ board, winningLine, locked, onSelect }: BoardProps) {
     <div
       role="group"
       aria-label="Tic-Tac-Toe board"
-      className="grid w-full max-w-xs grid-cols-3 gap-2 sm:max-w-sm sm:gap-3"
+      className="grid w-full max-w-68 grid-cols-3 gap-3 sm:max-w-xs"
     >
       {board.map((value, index) => (
         <Square

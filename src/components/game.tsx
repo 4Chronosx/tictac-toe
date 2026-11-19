@@ -1,5 +1,6 @@
 "use client";
 
+import { Volume2, VolumeX } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,15 +12,22 @@ import {
   playMove,
 } from "@/lib/game";
 import { useScore } from "@/lib/score-store";
+import { type Sfx, playSfx, useMuted } from "@/lib/sound";
 import { Board } from "./board";
+import { PLAYER_META } from "./marks";
 import { Scoreboard } from "./scoreboard";
 
 export function Game() {
   const [board, setBoard] = useState(EMPTY_BOARD);
   const [score, setScore] = useScore();
+  const [muted, setMuted] = useMuted();
 
   const outcome = getOutcome(board);
   const turn = outcome ? null : nextPlayer(board);
+
+  const sfx = (name: Sfx) => {
+    if (!muted) playSfx(name);
+  };
 
   // The score is updated in the click handler (not an effect) so each game is
   // counted exactly once, even under Strict Mode's double-invoked effects.
@@ -28,25 +36,38 @@ export function Game() {
     if (next === board) return;
     setBoard(next);
     const result = getOutcome(next);
-    if (result) setScore(applyResult(score, result));
+    if (result) {
+      setScore(applyResult(score, result));
+      sfx(result.type);
+    } else {
+      sfx("place");
+    }
   }
 
-  const message = !outcome
-    ? `${turn}'s turn`
-    : outcome.type === "win"
-      ? `${outcome.winner} wins!`
+  function handleNewGame() {
+    setBoard(EMPTY_BOARD);
+    sfx("start");
+  }
+
+  const featured = turn ?? (outcome?.type === "win" ? outcome.winner : null);
+  const FeaturedIcon = featured ? PLAYER_META[featured].Icon : null;
+  const message = turn
+    ? `${PLAYER_META[turn].name}'s turn`
+    : outcome?.type === "win"
+      ? `${PLAYER_META[outcome.winner].name} wins!`
       : "It's a draw";
 
   return (
-    <div className="flex w-full flex-col items-center gap-6">
+    <div className="flex w-full flex-col items-center gap-5">
       <Scoreboard score={score} turn={turn} />
 
       <p
         role="status"
         aria-live="polite"
-        className="text-xl font-semibold tracking-tight"
+        className="status-banner flex min-h-11 items-center gap-3 px-4 py-2"
       >
-        {message}
+        {FeaturedIcon && <FeaturedIcon className="size-5 shrink-0" />}
+        <span>{message}</span>
       </p>
 
       <Board
@@ -56,12 +77,24 @@ export function Game() {
         onSelect={handleSelect}
       />
 
-      <div className="flex gap-3">
-        <Button size="lg" onClick={() => setBoard(EMPTY_BOARD)}>
+      <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+        <Button className="pixel-btn pixel-btn-go" onClick={handleNewGame}>
           New Game
         </Button>
-        <Button size="lg" variant="outline" onClick={() => setScore(EMPTY_SCORE)}>
+        <Button
+          className="pixel-btn pixel-btn-stop"
+          onClick={() => setScore(EMPTY_SCORE)}
+        >
           Reset Scores
+        </Button>
+        <Button
+          aria-label="Sound"
+          aria-pressed={!muted}
+          title={muted ? "Sound off" : "Sound on"}
+          className="pixel-btn pixel-btn-neutral"
+          onClick={() => setMuted(!muted)}
+        >
+          {muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
         </Button>
       </div>
     </div>

@@ -4,10 +4,13 @@ A two-player Tic-Tac-Toe game built with Next.js (App Router), React 19, Tailwin
 
 ## Features
 
-- Two players take turns placing **X** and **O** on a 3×3 board (X goes first).
-- The game announces the winner — highlighting the winning line — or a draw.
+- Retro 8-bit platformer look: pixel font, sky with clouds and hills, brick frame and bonus-block squares. A night sky is used when the OS is in dark mode.
+- Two players take turns on a 3×3 board: **Heart** (X, goes first) and **Coin** (O), drawn as original pixel art.
+- The game announces the winner — the winning blocks bump and flash — or a draw.
 - **New Game** clears the board.
-- A scoreboard counts X wins, O wins and draws. Scores are saved in `localStorage`, so they survive a page refresh; **Reset Scores** sets them back to zero.
+- A scoreboard counts Heart wins, Coin wins and draws. Scores are saved in `localStorage`, so they survive a page refresh; **Reset Scores** sets them back to zero.
+- Optional chiptune sound effects (generated with the Web Audio API, no audio files). The speaker button mutes them and remembers the choice.
+- Animations are disabled when the OS asks for reduced motion.
 
 ## Getting started
 
@@ -39,9 +42,13 @@ src/
     game.tsx           client component: board state, status, buttons
     board.tsx          3×3 grid
     square.tsx         a single cell
-    scoreboard.tsx     X / Draws / O tallies
+    scoreboard.tsx     Heart / Draws / Coin tallies
+    marks.tsx          pixel-art Heart and Coin sprites
+    scenery.tsx        decorative sky, hills and ground
     ui/                shadcn/ui components
   lib/
     game.ts            pure game rules (winner, draw, moves, scoring)
-    score-store.ts     localStorage-backed score (useSyncExternalStore)
+    local-store.ts     generic localStorage store (useSyncExternalStore)
+    sound.ts           chiptune sound effects + mute setting
+    score-store.ts     persisted score
 ```
