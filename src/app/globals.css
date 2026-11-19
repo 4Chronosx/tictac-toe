@@ -1,0 +1,363 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --font-pixel: var(--font-press-start);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Retro platformer theme (original art direction).
+ * Unlayered on purpose: these rules win over Tailwind/shadcn utilities.
+ * ------------------------------------------------------------------ */
+
+:root {
+  --ink: #1b1b1b;
+  --sky-top: #5fa8ff;
+  --sky-bottom: #c6e7ff;
+  --cloud: #ffffff;
+  --hill: #4cbb4f;
+  --hill-dark: #1f6e2a;
+  --grass: #3fae3f;
+  --brick: #c4502a;
+  --brick-dark: #7d2a12;
+  --block: #ffb627;
+  --block-light: #ffe08a;
+  --block-dark: #b86a00;
+  --used: #a2622f;
+  --used-light: #c98b52;
+  --used-dark: #6b3c17;
+  --panel: #fff4dc;
+  --panel-fg: #1b1b1b;
+  --title: #c8321a;
+  --go: #12852a;
+  --stop: #b8200c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sky-top: #070d2e;
+    --sky-bottom: #26357a;
+    --cloud: #4a57a0;
+    --hill: #23774a;
+    --panel: #161a3a;
+    --panel-fg: #f4f1e6;
+    --title: #ffb627;
+  }
+}
+
+.sky {
+  background-color: var(--sky-top);
+  background-image: linear-gradient(var(--sky-top), var(--sky-bottom));
+}
+
+@media (prefers-color-scheme: dark) {
+  .sky {
+    background-image:
+      radial-gradient(#fff 1px, transparent 1.5px),
+      radial-gradient(#fff 1px, transparent 1.5px),
+      linear-gradient(var(--sky-top), var(--sky-bottom));
+    background-size: 120px 120px, 190px 190px, auto;
+    background-position: 0 0, 60px 80px, 0 0;
+  }
+}
+
+.ground {
+  height: 3rem;
+  border-top: 6px solid var(--grass);
+  box-shadow: 0 -4px 0 var(--ink);
+  background-color: var(--brick);
+  background-image:
+    linear-gradient(var(--brick-dark) 2px, transparent 2px),
+    linear-gradient(90deg, var(--brick-dark) 2px, transparent 2px);
+  background-size: 32px 16px;
+}
+
+.brick-frame {
+  padding: 10px;
+  border: 4px solid var(--ink);
+  background-color: var(--brick);
+  background-image:
+    linear-gradient(var(--brick-dark) 2px, transparent 2px),
+    linear-gradient(90deg, var(--brick-dark) 2px, transparent 2px);
+  background-size: 24px 12px;
+  box-shadow: 8px 8px 0 rgb(0 0 0 / 0.35);
+}
+
+.pixel-panel {
+  border: 4px solid var(--ink);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--panel-fg);
+  box-shadow: none;
+}
+
+.pixel-title {
+  color: var(--title);
+  text-shadow: 3px 3px 0 var(--ink);
+  line-height: 1.4;
+}
+
+/* Board squares: shiny bonus blocks that turn into spent blocks once played. */
+.bonus-block {
+  height: auto;
+  padding: 18%;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  background-color: var(--block);
+  background-image:
+    radial-gradient(var(--block-dark) 45%, transparent 50%),
+    radial-gradient(var(--block-dark) 45%, transparent 50%),
+    radial-gradient(var(--block-dark) 45%, transparent 50%),
+    radial-gradient(var(--block-dark) 45%, transparent 50%);
+  background-size: 7px 7px;
+  background-repeat: no-repeat;
+  background-position:
+    7px 7px,
+    calc(100% - 7px) 7px,
+    7px calc(100% - 7px),
+    calc(100% - 7px) calc(100% - 7px);
+  box-shadow:
+    inset 4px 4px 0 var(--block-light),
+    inset -4px -4px 0 var(--block-dark),
+    4px 4px 0 var(--ink);
+  transition: transform 80ms steps(2);
+}
+
+.bonus-block:not(:disabled):hover {
+  background-color: var(--block);
+  transform: translateY(-4px);
+}
+
+.bonus-block:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.bonus-block:focus-visible {
+  outline: 4px solid #fff;
+  outline-offset: 2px;
+  box-shadow:
+    inset 4px 4px 0 var(--block-light),
+    inset -4px -4px 0 var(--block-dark),
+    4px 4px 0 var(--ink),
+    0 0 0 9px var(--ink);
+}
+
+.bonus-block[data-mark] {
+  background-color: var(--used);
+  background-image:
+    radial-gradient(var(--used-dark) 45%, transparent 50%),
+    radial-gradient(var(--used-dark) 45%, transparent 50%),
+    radial-gradient(var(--used-dark) 45%, transparent 50%),
+    radial-gradient(var(--used-dark) 45%, transparent 50%);
+  box-shadow:
+    inset 4px 4px 0 var(--used-light),
+    inset -4px -4px 0 var(--used-dark),
+    4px 4px 0 var(--ink);
+}
+
+.bonus-block[data-winning] {
+  outline: 4px solid #fff;
+  outline-offset: 2px;
+  animation:
+    block-bump 0.45s steps(6) both,
+    block-flash 0.6s steps(1) 0.45s infinite;
+}
+
+.mark-pop {
+  animation: mark-pop 0.18s steps(3) both;
+}
+
+@keyframes block-bump {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-14px); }
+}
+
+@keyframes block-flash {
+  50% { outline-color: var(--block); }
+}
+
+@keyframes mark-pop {
+  from { transform: scale(0.3); }
+  to { transform: scale(1); }
+}
+
+/* Chunky arcade buttons. */
+.pixel-btn {
+  height: auto;
+  padding: 0.85rem 1rem;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  line-height: 1;
+  text-shadow: 2px 2px 0 rgb(0 0 0 / 0.45);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.pixel-btn:hover { filter: brightness(1.12); }
+.pixel-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.pixel-btn:focus-visible { outline: 3px solid var(--block); outline-offset: 3px; }
+.pixel-btn-go, .pixel-btn-go:hover { background-color: var(--go); }
+.pixel-btn-stop, .pixel-btn-stop:hover { background-color: var(--stop); }
+.pixel-btn-neutral, .pixel-btn-neutral:hover { background-color: #3a3f6b; padding: 0.6rem; }
+
+/* HUD: score tiles and status banner. */
+.hud-tile {
+  border: 3px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.3);
+}
+
+.hud-tile[data-active] {
+  outline: 3px solid var(--block);
+  outline-offset: 2px;
+}
+
+.status-banner {
+  border: 3px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bonus-block,
+  .bonus-block[data-winning],
+  .mark-pop {
+    animation: none;
+    transition: none;
+  }
+  .bonus-block:not(:disabled):hover,
+  .pixel-btn:active {
+    transform: none;
+  }
+}
